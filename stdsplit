@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+{
+  while getopts ":p:h" opt; do
+    case ${opt} in
+      h)
+        echo "stdsplit runs a command with stdout and stderr displayed side-by-side."
+        echo "stdsplit depends on tmux."
+        echo ""
+        echo "Usage:"
+        echo "    stdsplit <command>"
+        exit 1
+        ;;
+      \?)
+        echo "Invalid Option: -$OPTARG"
+        exit 1
+        ;;
+    esac
+  done
+  shift $(expr $OPTIND - 1 )
+} 1>&2
+
+if [ $# -eq 0 ]; then
+    echo "No command provided"
+    exit 1
+fi
+
+stderr=$(mktemp)
+tmux -f /dev/null new-session "$@"' 2> '"$stderr" \; split -h 'tail -F '"$stderr" \; selectp -l
