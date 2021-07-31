@@ -5,8 +5,8 @@ class Stdsplit < Formula
 
   depends_on "tmux"
 
-  version "1.0.0"
-  sha256 "575aa3ce5c8ff0d110d238613fa1b0727f0640fbb27a0beeb60f873ccc7cd0cb"
+  version "2.0.0"
+  sha256 "1755026c42e5877d37b6ef0d6d2f3b812d038fd0c71560e2ad42a8fb69206b24"
 
   url "https://raw.githubusercontent.com/leighmcculloch/stdsplit/v#{version}/stdsplit"
 
