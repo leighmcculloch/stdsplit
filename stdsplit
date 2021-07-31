@@ -30,4 +30,4 @@ if [ $# -eq 0 ]; then
 fi
 
 stderr=$(mktemp)
-tmux -f /dev/null new-session "$@"' 2> '"$stderr" \; split -h 'tail -F '"$stderr" \; selectp -l
+tmux -f /dev/null new-session "$@"' 2> '"$stderr" \; set-option remain-on-exit on \; split -h 'tail -F '"$stderr" \; selectp -l
